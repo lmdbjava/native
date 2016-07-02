@@ -1,0 +1,31 @@
+matrix:
+  include:
+  - os: linux
+    sudo: required
+    dist: trusty
+    language: java
+    jdk: oraclejdk8
+  - os: osx
+    language: java
+    osx_image: xcode8
+before_install:
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install binutils-mingw-w64-x86-64; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-base; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-common; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-x86-64-dev; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-x86-64; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export JAVA_HOME=$(/usr/libexec/java_home); fi
+env:
+  global:
+  # BINTRAY_USER
+  - secure: qQU4Nd4J1Vw7Tf6motB6ZTmxwsG19fhGP64UNY6gaNp96maT2gRlZzReE0k9SMlxInO+OFrSVJwLMuuGq61hNYbKUGXqSpsGBTHwbHAjMFwGvv+TR1i1s1EHGi2yQaZVs4Kk+w49fJXJNnQtlaKRXFf1HV321e9oPrUvhxJD4hEUo8kd/iSuIQr2ssY598vzGU3lvDxZJDIrfjRiMRqBuf1B2NylKHnX2DiTSjR1h44wqGF5j+zvRbbSy4elraXTGQSUPdQ9DRic6Keyzqe3yvj1ro11DBUFVq9bATekCsPFK07fth1NrfhhJr1KCC0fTJh/1zqXuVBeklywlobpl7sDpq23IfE5X8PL4yZa6KMcxGESYn+dF1yzdHXMoXzl8Xe9/8UKaMRA0lNo4Y4RliAoRd508kF6sYAZHcRj1FZnrG/rzMVcVr44f24Pf0+5VQ8n46m7Pasn7rJsyBg74AHeQ57K35H6R6plrpaDuefSVEatRRo/IO26a+lAPXK2nG4pKCnac433aPvwbMPRsqWEUeCDwyH/l4fxCZys1rqx1Eij1svJEDq7V4QXiYQWq55coJ3/3uPIJjXiefXdUJxZriACrT9aRGM/GvfdB36KPAmv5JRTOMypqEzip12bqvLuFLMoR58GEE9jKoB2uNAufLV6K8/YaODs6GRKDXc=
+  # BINTRAY_PASS
+  - secure: UfA2KFUmFNMn01tfS2f1YFMtBGTexvzJjqbrGjspLHbrf+5EZglokqowMk6Zq81e7oXoybrBzOOZXO+vS2FilCfHQmQQa7AaeXQRmEeWp3jXRRdUWZZYPoP3XshUQsFhtfasEF3oJw5IQqQNk3krkE4eVK+pRDZtvxgKvavaqLd3pP46+dD7UpoGeDF1xomj91BWnnvnM46I6Snsp4UeRLQ6dTjjDah6XhtmpKzDu+EWNlTcXM9cN9GhKNH1jTxXU+oD61NUUyFy8xzOCLA1y4CzsZDu130ygFPRV5mxpk3CZgdCfShXWUpLUzCvfKLVI5SsFFTk9brnHscbs1OWU2mkDXUFicE1WaHRIXKVHtrYekLZ1qzpSwqR7gPU54Zh5d8BouiVvnN1JNPJDWCU9HJKUWrZ8+4TE33G11Oai7/QlQ/EtOzPtb3udtLO3/k1NxAU32lttRKzBrd4g8+r9u/4yNZjGdUL1eFwBN7KSLQxWqDPvtS85tRbW8nDR1uRxlhiGSyLkjth/l51y6fKK5s7wBYxV76vsfmnNa8L/3tsG3f3ZjEKq1MyrE5bL9DkXBg+7lcXuGk1NbxvAnChQ95Y2+8izw1lxbnJNlJJf4zbWBliwzKtSNBV1aHddSxcM11wiJ8VONXhUg0HMufPoCWZvAv5A+p3PXpkpKhJa3k=
+notifications:
+  email:
+  - ben.alex@acegi.com.au
+  # - stoffe@gmail.com
+after_success:
+  - echo "<settings><servers><server><id>bintray-lmdbjava-maven</id><username>\${env.BINTRAY_USER}</username><password>\${env.BINTRAY_PASS}</password></server></servers></settings>" > ~/settings.xml
+  - echo "Pull Request=($TRAVIS_PULL_REQUEST) Tag=($TRAVIS_TAG)"
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then mvn deploy --settings ~/settings.xml; fi
