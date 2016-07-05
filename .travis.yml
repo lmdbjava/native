@@ -24,8 +24,7 @@ env:
 notifications:
   email:
   - ben.alex@acegi.com.au
-  # - stoffe@gmail.com
+  - stoffe@gmail.com
 after_success:
   - echo "<settings><servers><server><id>bintray-lmdbjava-maven</id><username>\${env.BINTRAY_USER}</username><password>\${env.BINTRAY_PASS}</password></server></servers></settings>" > ~/settings.xml
-  - echo "Pull Request=($TRAVIS_PULL_REQUEST) Tag=($TRAVIS_TAG)"
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then mvn deploy --settings ~/settings.xml; fi

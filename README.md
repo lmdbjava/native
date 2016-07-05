@@ -8,26 +8,34 @@ native library. It packages the built libraries into operating system-specific
 JARs (with POMs). This allows LmdbJava (or other interested Java projects) to
 depend on these JARs using the normal Maven dependency resolution process.
 
-The repository expects to be executed on a Linux machine.
-
 The following dependencies are required (plus Java and Maven):
 
-* GCC for building the Linux SO
-* [Mingw-w64](http://mingw-w64.org/) for building the Windows DLL
+* GCC for building the Linux or OS X SO
+* [Mingw-w64](http://mingw-w64.org/) for building the Windows DLL (on Linux)
+  (Arch Linux uses can `pacman -S mingw-w64-gcc`)
 
 ### Installation
 
-- Arch Linux
-```bash
-pacman -S mingw-w64-gcc
-```
+This project is mainly intended to be built by Travis CI, as a Linux operating
+system is required to build the Linux and Windows libraries, and an OS X
+operating system is needed to build the OS X library. Nevertheless it is
+possible to execute the Linux or OS X component of the build on those systems.
 
-### Usage
+Once the platform dependencies are met:
 
 ```bash
 git submodule update
 mvn clean install
 ```
+
+An appropriate Maven profile will automatically be used for Linux or OS X.
+
+### Versioning
+
+This project uses the `major.minor.patch-qualifier` version numbering typical
+of Maven projects. The major, minor and patch directly reflect the upstream
+LMDB library version, as expressed by `lmdb.h` `MDB_VERSION_*` definitions.
+The qualifier resets to `1` on a new major, minor or patch release.
 
 ### Support
 
@@ -36,16 +44,8 @@ have any questions.
 
 ### Releasing
 
-Travis CI automatically releases built JARs to a Maven-structured BinTray repository.
-
-To perfom a release:
-
-1. Edit the `pom.xml` files to reflect the new version
-2. Edit `descriptor.json` to reflect a new version number
-3. Run a `git tag` for the version
-4. Perform a `git push origin --tags`.
-
-The new version for Linux, Windows and OS X should automatically arrive on BinTray.
+Any tagged commit will cause Travis CI to build a release and deploy it to the
+BinTray Maven repository. BinTray's will GPG sign the release.
 
 ### Contributing
 
