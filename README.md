@@ -42,6 +42,11 @@ The qualifier resets to `1` on a new major, minor or patch release.
 Please [open a GitHub issue](https://github.com/lmdbjava/native/issues) if you
 have any questions.
 
+### Contributing
+
+Contributions are welcome! Please see the LmdbJava project's
+[Contributing Guidelines](https://github.com/lmdbjava/lmdbjava/blob/master/CONTRIBUTING.md).
+
 ### Releasing
 
 Any tagged commit will cause Travis CI to build a release and deploy it to the
@@ -50,11 +55,6 @@ BinTray Maven repository. BinTray will GPG sign the release.
 Project maintainers can run `mvn -Prelease release:clean release:prepare` to
 update the POMs to a formal release version number, Git tag, and increment the
 version number for ongoing development. Travis will perform the actual release.
-
-### Contributing
-
-Contributions are welcome! Please see the LmdbJava project's
-[Contributing Guidelines](https://github.com/lmdbjava/lmdbjava/blob/master/CONTRIBUTING.md).
 
 ### License
 
