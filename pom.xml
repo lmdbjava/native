@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lmdbjava</groupId>
   <artifactId>native-parent</artifactId>
-  <version>0.9.70-1</version>
+  <version>0.9.70-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>LmdbJava Native Library Holder</name>
   <description>Holds output of a Symas Lightning Database (LMDB) builds</description>
@@ -135,6 +135,26 @@
     </plugins>
   </build>
   <profiles>
+    <profile>
+      <id>release</id>
+      <modules>
+        <module>linux-x86_64</module>
+        <module>windows-x86_64</module>
+        <module>osx-x86_64</module>
+      </modules>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.5.3</version>
+            <configuration>
+              <autoVersionSubmodules>true</autoVersionSubmodules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>linux</id>
       <activation>

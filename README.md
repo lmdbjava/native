@@ -47,6 +47,10 @@ have any questions.
 Any tagged commit will cause Travis CI to build a release and deploy it to the
 BinTray Maven repository. BinTray's will GPG sign the release.
 
+Project maintainers can run `mvn -Prelease release:clean release:prepare` to
+update the POMs to a formal release version number, Git tag, and increment the
+version number for ongoing development. Travis will perform the actual release.
+
 ### Contributing
 
 Contributions are welcome! Please see the LmdbJava project's
