@@ -33,7 +33,7 @@
             <configuration>
               <workingDirectory>${project.basedir}/../lmdb/libraries/liblmdb</workingDirectory>
               <executable>make</executable>
-              <commandlineArgs>-e clean all</commandlineArgs>
+              <commandlineArgs>-e clean test</commandlineArgs>
             </configuration>
           </execution>
         </executions>
