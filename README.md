@@ -24,7 +24,7 @@ possible to execute the Linux or OS X component of the build on those systems.
 Once the platform dependencies are met:
 
 ```bash
-git submodule update
+git submodule update --init
 mvn clean install
 ```
 
