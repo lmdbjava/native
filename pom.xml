@@ -19,13 +19,6 @@
     <url>git@github.com:lmdbjava/native.git</url>
     <tag>HEAD</tag>
   </scm>
-  <distributionManagement>
-    <repository>
-      <id>bintray-lmdbjava-maven</id>
-      <name>lmdbjava-maven</name>
-      <url>https://api.bintray.com/maven/lmdbjava/maven/org.lmdbjava:native/;publish=1</url>
-    </repository>
-  </distributionManagement>
   <issueManagement>
     <system>GitHub Issues</system>
     <url>https://github.com/lmdbjava/native/issues</url>
@@ -34,12 +27,36 @@
     <system>travis-ci</system>
     <url>https://travis-ci.org/lmdbjava/native</url>
   </ciManagement>
+  <distributionManagement>
+    <repository>
+      <id>bintray-lmdbjava-maven</id>
+      <name>lmdbjava-maven</name>
+      <url>https://api.bintray.com/maven/lmdbjava/maven/org.lmdbjava:native/;publish=1</url>
+    </repository>
+  </distributionManagement>
   <licenses>
     <license>
       <name>The OpenLDAP Public License, Version 2.8</name>
       <url>http://www.openldap.org/software/release/license.html</url>
     </license>
   </licenses>
+  <developers>
+    <developer>
+      <name>Kristoffer Sjogren</name>
+      <id>krisskross</id>
+      <email>stoffe -at- gmail.com</email>
+      <organization/>
+      <url>http://stoffe.deephacks.org/</url>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <name>Ben Alex</name>
+      <id>benalexau</id>
+      <email>ben.alex@acegi.com.au</email>
+      <url>https://github.com/benalexau/</url>
+      <organization>Acegi Technology Pty Limited</organization>
+    </developer>
+  </developers>
   <build>
     <pluginManagement>
       <plugins>
