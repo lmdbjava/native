@@ -45,7 +45,7 @@
       <name>Kristoffer Sjogren</name>
       <id>krisskross</id>
       <email>stoffe -at- gmail.com</email>
-      <organization />
+      <organization/>
       <url>http://stoffe.deephacks.org/</url>
       <timezone>+1</timezone>
     </developer>
@@ -75,7 +75,7 @@
               <phase>generate-sources</phase>
               <configuration>
                 <tasks>
-                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
+                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava"/>
                 </tasks>
               </configuration>
               <goals>
