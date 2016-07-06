@@ -37,6 +37,17 @@ of Maven projects. The major, minor and patch directly reflect the upstream
 LMDB library version, as expressed by `lmdb.h` `MDB_VERSION_*` definitions.
 The qualifier resets to `1` on a new major, minor or patch release.
 
+### Repository
+
+LmdbJava shades inside its JAR all of the system libraries produced by this
+project. As such, end users typically have no need to refer to any artifacts
+produced by this project.
+
+Should you require native build artifacts produced by this project (eg you are
+developing some new Java library etc), these are always available from the
+[JCenter](https://bintray.com/bintray/jcenter) repository. We synchronise a
+subset of the artifacts to Maven Central, but JCentre is the primary repository.
+
 ### Support
 
 Please [open a GitHub issue](https://github.com/lmdbjava/native/issues) if you
@@ -46,15 +57,6 @@ have any questions.
 
 Contributions are welcome! Please see the LmdbJava project's
 [Contributing Guidelines](https://github.com/lmdbjava/lmdbjava/blob/master/CONTRIBUTING.md).
-
-### Releasing
-
-Any tagged commit will cause Travis CI to build a release and deploy it to the
-BinTray Maven repository. BinTray will GPG sign the release.
-
-Project maintainers can run `mvn -Prelease release:clean release:prepare` to
-update the POMs to a formal release version number, Git tag, and increment the
-version number for ongoing development. Travis will perform the actual release.
 
 ### License
 

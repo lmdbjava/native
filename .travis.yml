@@ -34,8 +34,9 @@ after_success:
   # NEVER display / log / transmit / expose these details. #
   ##########################################################
 
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then openssl aes-256-cbc -K $encrypted_e83bea8ca926_key -iv $encrypted_e83bea8ca926_iv -in secrets.tar.enc -out secrets.tar -d; fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then tar xvf secrets.tar; fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then VERSION=$(grep '<version>' pom.xml | head -n 1 | sed -r 's/ *<version>(.*)<\/version>/\1/g'); fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then curl -u ${BINTRAY_USER}:${BINTRAY_PASS} -d @gpg-sign.json  https://api.bintray.com/gpg/${BINTRAY_SUBJECT}/${BINTRAY_REPO}/${BINTRAY_PACKAGE}/versions/${VERSION} --header 'Content-Type:application/json'; fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then curl -u ${BINTRAY_USER}:${BINTRAY_PASS} -d @mvn-central-sync.json  https://api.bintray.com/maven_central_sync/${BINTRAY_SUBJECT}/${BINTRAY_REPO}/${BINTRAY_PACKAGE}/versions/${VERSION} --header 'Content-Type:application/json'; fi
+  # The following commands only run on the Linux build (Travis needs a build pipeline; https://github.com/dmakhno/travis_after_all is inadequate as leader is random).
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then openssl aes-256-cbc -K $encrypted_e83bea8ca926_key -iv $encrypted_e83bea8ca926_iv -in secrets.tar.enc -out secrets.tar -d; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then tar xvf secrets.tar; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then VERSION=$(grep '<version>' pom.xml | head -n 1 | sed -r 's/ *<version>(.*)<\/version>/\1/g'); fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then curl -u ${BINTRAY_USER}:${BINTRAY_PASS} -d @gpg-sign.json  https://api.bintray.com/gpg/${BINTRAY_SUBJECT}/${BINTRAY_REPO}/${BINTRAY_PACKAGE}/versions/${VERSION} --header 'Content-Type:application/json'; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then curl -u ${BINTRAY_USER}:${BINTRAY_PASS} -d @mvn-central-sync.json  https://api.bintray.com/maven_central_sync/${BINTRAY_SUBJECT}/${BINTRAY_REPO}/${BINTRAY_PACKAGE}/versions/${VERSION} --header 'Content-Type:application/json'; fi
