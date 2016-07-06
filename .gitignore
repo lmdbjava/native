@@ -1,2 +1,4 @@
 *~
 target
+gpg-sign.json
+mvn-central-sync.json
