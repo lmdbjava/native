@@ -29,7 +29,7 @@
   </ciManagement>
   <distributionManagement>
     <repository>
-      <id>bintray-lmdbjava-maven</id>
+      <id>bintray-dist-maven</id>
       <name>lmdbjava-maven</name>
       <url>https://api.bintray.com/maven/lmdbjava/maven/org.lmdbjava:native/;publish=1</url>
     </repository>
