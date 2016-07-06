@@ -92,6 +92,7 @@
             <classesDirectory>${project.basedir}/target/native</classesDirectory>
             <includes>
               <include>**/*.so</include>
+              <include>**/*.dylib</include>
               <include>**/*.dll</include>
             </includes>
           </configuration>
