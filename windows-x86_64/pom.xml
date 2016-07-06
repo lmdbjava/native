@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.lmdbjava</groupId>
-    <artifactId>native-parent</artifactId>
+    <artifactId>lmdbjava-native-parent</artifactId>
     <version>0.9.18-1-SNAPSHOT</version>
   </parent>
-  <artifactId>native-windows-x86_64</artifactId>
+  <artifactId>lmdbjava-native-windows-x86_64</artifactId>
   <version>0.9.18-1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>LmdbJava Native Library Holder: Windows</name>
