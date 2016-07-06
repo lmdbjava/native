@@ -25,7 +25,7 @@ env:
 notifications:
   email:
   - ben.alex@acegi.com.au
-#  - stoffe@gmail.com
+  - stoffe@gmail.com
 after_success:
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then mvn deploy --settings .settings.xml; fi
 
