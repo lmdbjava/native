@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/lmdbjava/native.svg?branch=master)](https://travis-ci.org/lmdbjava/native)
-[![Download](https://api.bintray.com/packages/lmdbjava/maven/org.lmdbjava:native/images/download.svg)](https://bintray.com/lmdbjava/maven/org.lmdbjava:native/_latestVersion)
 [![Dependency Status](https://www.versioneye.com/user/projects/577d1dab91aab50027c6ca38/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/577d1dab91aab50027c6ca38)
+[![Download](https://api.bintray.com/packages/lmdbjava/maven/org.lmdbjava:native/images/download.svg)](https://bintray.com/lmdbjava/maven/org.lmdbjava:native/_latestVersion)
 [![License](https://img.shields.io/badge/license-OpenLDAP-blue.svg?maxAge=2592000)](http://www.openldap.org/software/release/license.html)
 ![Size](https://reposs.herokuapp.com/?path=lmdbjava/native)
 
