@@ -58,7 +58,11 @@ have any questions.
 Contributions are welcome! Please see the LmdbJava project's
 [Contributing Guidelines](https://github.com/lmdbjava/lmdbjava/blob/master/CONTRIBUTING.md).
 
-### License
+### Releasing
 
+Refer to
+[LmdbJava Releasing](https://github.com/lmdbjava/lmdbjava/blob/master/RELEASE.md).
+
+### License
 LMDB (and this repository for simplicity) is licensed under
 [The OpenLDAP Public License](http://www.openldap.org/software/release/license.html).
