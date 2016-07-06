@@ -75,7 +75,7 @@
               <phase>generate-sources</phase>
               <configuration>
                 <tasks>
-                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
+                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava"/>
                 </tasks>
               </configuration>
               <goals>
