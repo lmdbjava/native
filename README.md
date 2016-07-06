@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/lmdbjava/native.svg?branch=master)](https://travis-ci.org/lmdbjava/native)
-[![Download](https://api.bintray.com/packages/lmdbjava/maven/native/images/download.svg)](https://bintray.com/lmdbjava/maven/native/_latestVersion)
+[![Download](https://api.bintray.com/packages/lmdbjava/maven/org.lmdbjava:native/images/download.svg)](https://bintray.com/lmdbjava/maven/org.lmdbjava:native/_latestVersion)
 
 # LMDB Native Libraries
 
