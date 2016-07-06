@@ -19,7 +19,7 @@ The following dependencies are required (plus Java and Maven):
 This project is mainly intended to be built by Travis CI, as a Linux operating
 system is required to build the Linux and Windows libraries, and an OS X
 operating system is needed to build the OS X library. Nevertheless it is
-possible to execute the Linux or OS X component of the build on those systems.
+possible to execute the Linux or OS X component of the build locally.
 
 Once the platform dependencies are met:
 
@@ -46,7 +46,7 @@ produced by this project.
 Should you require native build artifacts produced by this project (eg you are
 developing some new Java library etc), these are always available from the
 [JCenter](https://bintray.com/bintray/jcenter) repository. We synchronise a
-subset of the artifacts to Maven Central, but JCentre is the primary repository.
+subset of the artifacts to Maven Central, but JCenter is the primary repository.
 
 ### Support
 
