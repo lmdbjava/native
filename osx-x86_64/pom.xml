@@ -60,7 +60,7 @@
               <fileSets>
                 <fileSet>
                   <sourceFile>${project.basedir}/../lmdb/libraries/liblmdb/liblmdb.so</sourceFile>
-                  <destinationFile>${project.basedir}/target/native/org/lmdbjava/${project.artifactId}.so</destinationFile>
+                  <destinationFile>${project.basedir}/target/native/org/lmdbjava/${project.artifactId}.dylib</destinationFile>
                 </fileSet>
               </fileSets>
             </configuration>
