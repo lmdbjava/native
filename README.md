@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/lmdbjava/native.svg?branch=master)](https://travis-ci.org/lmdbjava/native)
 [![Dependency Status](https://www.versioneye.com/user/projects/577d1dab91aab50027c6ca38/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/577d1dab91aab50027c6ca38)
-[![Maven Central](https://img.shields.io/maven-central/v/org.lmdbjava/native.svg?maxAge=3600)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.lmdbjava%22%20AND%20a%3A%22lmdbjava-native-parent%22)
+[![Maven Central](https://img.shields.io/maven-central/v/org.lmdbjava/lmdbjava-native-parent.svg?maxAge=3600)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.lmdbjava%22%20AND%20a%3A%22lmdbjava-native-parent%22)
 [![License](https://img.shields.io/badge/license-OpenLDAP-blue.svg?maxAge=2592000)](http://www.openldap.org/software/release/license.html)
 
 # LMDB Native Libraries
