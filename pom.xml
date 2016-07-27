@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.lmdbjava</groupId>
   <artifactId>lmdbjava-native-parent</artifactId>
-  <version>0.9.18-3</version>
+  <version>0.9.18-4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>LmdbJava Native Library Holder</name>
   <description>Holds output of a Symas Lightning Database (LMDB) builds</description>
@@ -28,7 +28,7 @@
       <name>Kristoffer Sjogren</name>
       <id>krisskross</id>
       <email>stoffe -at- gmail.com</email>
-      <organization/>
+      <organization />
       <url>http://stoffe.deephacks.org/</url>
       <timezone>+1</timezone>
     </developer>
@@ -44,7 +44,7 @@
     <connection>scm:git:git@github.com:${github.org}/${github.repo}.git</connection>
     <developerConnection>scm:git:git@github.com:${github.org}/${github.repo}.git</developerConnection>
     <url>git@github.com:${github.org}/${github.repo}.git</url>
-    <tag>lmdbjava-native-parent-0.9.18-3</tag>
+    <tag>HEAD</tag>
   </scm>
   <properties>
     <github.org>lmdbjava</github.org>
@@ -90,7 +90,7 @@
               <phase>generate-sources</phase>
               <configuration>
                 <tasks>
-                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava"/>
+                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
                 </tasks>
               </configuration>
               <goals>

@@ -4,10 +4,10 @@
   <parent>
     <groupId>org.lmdbjava</groupId>
     <artifactId>lmdbjava-native-parent</artifactId>
-    <version>0.9.18-3</version>
+    <version>0.9.18-4-SNAPSHOT</version>
   </parent>
   <artifactId>lmdbjava-native-linux-x86_64</artifactId>
-  <version>0.9.18-3</version>
+  <version>0.9.18-4-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>LmdbJava Native Library Holder: Linux</name>
   <build>
