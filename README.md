@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/lmdbjava/native.svg?branch=master)](https://travis-ci.org/lmdbjava/native)
 [![Dependency Status](https://www.versioneye.com/user/projects/577d1dab91aab50027c6ca38/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/577d1dab91aab50027c6ca38)
-[![Download](https://api.bintray.com/packages/lmdbjava/maven/org.lmdbjava:native/images/download.svg)](https://bintray.com/lmdbjava/maven/org.lmdbjava:native/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/org.lmdbjava/native.svg?maxAge=3600)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.lmdbjava%22%20AND%20a%3A%22lmdbjava-native-parent%22)
 [![License](https://img.shields.io/badge/license-OpenLDAP-blue.svg?maxAge=2592000)](http://www.openldap.org/software/release/license.html)
-![Size](https://reposs.herokuapp.com/?path=lmdbjava/native)
 
 # LMDB Native Libraries
 
@@ -46,11 +45,6 @@ LmdbJava shades inside its JAR all of the system libraries produced by this
 project. As such, end users typically have no need to refer to any artifacts
 produced by this project.
 
-Should you require native build artifacts produced by this project (eg you are
-developing some new Java library etc), these are always available from the
-[JCenter](https://bintray.com/bintray/jcenter) repository. We synchronise a
-subset of the artifacts to Maven Central, but JCenter is the primary repository.
-
 ### Support
 
 Please [open a GitHub issue](https://github.com/lmdbjava/native/issues) if you
@@ -63,8 +57,7 @@ Contributions are welcome! Please see the LmdbJava project's
 
 ### Releasing
 
-Refer to
-[LmdbJava Releasing](https://github.com/lmdbjava/lmdbjava/blob/master/RELEASE.md).
+Please see the [Acegi Standard Project Release Instructions](https://github.com/acegi/acegi-standard-project#performing-a-release).
 
 ### License
 LMDB (and this repository for simplicity) is licensed under

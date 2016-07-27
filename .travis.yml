@@ -1,3 +1,6 @@
+cache:
+  directories:
+  - $HOME/.m2
 matrix:
   include:
   - os: linux
@@ -8,6 +11,9 @@ matrix:
   - os: osx
     language: java
     osx_image: xcode8
+notifications:
+  email:
+  - ben.alex@acegi.com.au
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install binutils-mingw-w64-x86-64; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-base; fi
@@ -15,28 +21,10 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-x86-64-dev; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-x86-64; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export JAVA_HOME=$(/usr/libexec/java_home); fi
-env:
-  global:
-  - BINTRAY_SUBJECT=lmdbjava
-  - BINTRAY_REPO=maven
-  - BINTRAY_PACKAGE=org.lmdbjava:native
-  - BINTRAY_USER=benalexau
-  - secure: UfA2KFUmFNMn01tfS2f1YFMtBGTexvzJjqbrGjspLHbrf+5EZglokqowMk6Zq81e7oXoybrBzOOZXO+vS2FilCfHQmQQa7AaeXQRmEeWp3jXRRdUWZZYPoP3XshUQsFhtfasEF3oJw5IQqQNk3krkE4eVK+pRDZtvxgKvavaqLd3pP46+dD7UpoGeDF1xomj91BWnnvnM46I6Snsp4UeRLQ6dTjjDah6XhtmpKzDu+EWNlTcXM9cN9GhKNH1jTxXU+oD61NUUyFy8xzOCLA1y4CzsZDu130ygFPRV5mxpk3CZgdCfShXWUpLUzCvfKLVI5SsFFTk9brnHscbs1OWU2mkDXUFicE1WaHRIXKVHtrYekLZ1qzpSwqR7gPU54Zh5d8BouiVvnN1JNPJDWCU9HJKUWrZ8+4TE33G11Oai7/QlQ/EtOzPtb3udtLO3/k1NxAU32lttRKzBrd4g8+r9u/4yNZjGdUL1eFwBN7KSLQxWqDPvtS85tRbW8nDR1uRxlhiGSyLkjth/l51y6fKK5s7wBYxV76vsfmnNa8L/3tsG3f3ZjEKq1MyrE5bL9DkXBg+7lcXuGk1NbxvAnChQ95Y2+8izw1lxbnJNlJJf4zbWBliwzKtSNBV1aHddSxcM11wiJ8VONXhUg0HMufPoCWZvAv5A+p3PXpkpKhJa3k=
-notifications:
-  email:
-  - ben.alex@acegi.com.au
-  - stoffe@gmail.com
+install:
+  - mvn -B -Pdeploy -DexcludeGroupIds=com.github.github -V dependency:go-offline
+script:
+  - mvn -B -Pdeploy -Dgpg.skip=true verify
 after_success:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then mvn deploy --settings .settings.xml; fi
-
-  ######################### CAUTION ########################
-  # BinTray API, Sonatype API and GPG keys are used below. #
-  # NEVER display / log / transmit / expose these details. #
-  ##########################################################
-
-  # The following commands only run on the Linux build (Travis needs a build pipeline; https://github.com/dmakhno/travis_after_all is inadequate as leader is random).
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then openssl aes-256-cbc -K $encrypted_e83bea8ca926_key -iv $encrypted_e83bea8ca926_iv -in secrets.tar.enc -out secrets.tar -d; fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then tar xvf secrets.tar; fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then VERSION=$(grep '<version>' pom.xml | head -n 1 | sed -r 's/ *<version>(.*)<\/version>/\1/g'); fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then curl -u ${BINTRAY_USER}:${BINTRAY_PASS} -d @gpg-sign.json  https://api.bintray.com/gpg/${BINTRAY_SUBJECT}/${BINTRAY_REPO}/${BINTRAY_PACKAGE}/versions/${VERSION} --header 'Content-Type:application/json'; fi
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then curl -u ${BINTRAY_USER}:${BINTRAY_PASS} -d @mvn-sync.json  https://api.bintray.com/maven_central_sync/${BINTRAY_SUBJECT}/${BINTRAY_REPO}/${BINTRAY_PACKAGE}/versions/${VERSION} --header 'Content-Type:application/json'; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then echo $GPG_KEY | base64 --decode | gpg --batch --fast-import -; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then mvn -B -P deploy --settings .travis-settings.xml deploy; fi
