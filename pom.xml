@@ -49,8 +49,6 @@
   <properties>
     <github.org>lmdbjava</github.org>
     <github.repo>native</github.repo>
-    <license.licenseName>openldap_v2_8</license.licenseName>
-    <license.projectName>LmdbJava Native Library Holder</license.projectName>
   </properties>
   <build>
     <plugins>
