@@ -45,7 +45,7 @@ LmdbJava shades inside its JAR all of the system libraries produced by this
 project. As such, end users typically have no need to refer to any artifacts
 produced by this project.
 
-## Snapshots
+### Snapshots
 
 Travis CI automatically publishes snapshot releases to the
 [OSS Sonatype Snapshots Repository](https://oss.sonatype.org/content/repositories/snapshots/org/lmdbjava/native).
