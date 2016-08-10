@@ -48,7 +48,7 @@ produced by this project.
 ### Snapshots
 
 Travis CI automatically publishes snapshot releases to the
-[OSS Sonatype Snapshots Repository](https://oss.sonatype.org/content/repositories/snapshots/org/lmdbjava/native).
+[OSS Sonatype Snapshots Repository](https://oss.sonatype.org/content/repositories/snapshots/org/lmdbjava/lmdbjava-native-parent/).
 
 ### Support
 
