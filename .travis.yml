@@ -21,7 +21,6 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-common; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-x86-64-dev; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-x86-64; fi
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install gnupg; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export JAVA_HOME=$(/usr/libexec/java_home); fi
 install:
   - mvn -B -Pdeploy -DexcludeGroupIds=com.github.github -V dependency:go-offline
