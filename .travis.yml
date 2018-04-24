@@ -16,6 +16,7 @@ notifications:
   - ben.alex@acegi.com.au
   - stoffe@gmail.com
 before_install:
+  - gpg --version
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install binutils-mingw-w64-x86-64; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-base; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-common; fi
