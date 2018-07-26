@@ -4,7 +4,7 @@
   <parent>
     <groupId>au.com.acegi</groupId>
     <artifactId>acegi-standard-project</artifactId>
-    <version>0.1.7</version>
+    <version>0.1.8</version>
   </parent>
   <groupId>org.lmdbjava</groupId>
   <artifactId>lmdbjava-native-parent</artifactId>
@@ -140,6 +140,19 @@
       </modules>
     </profile>
     <profile>
+      <id>arm</id>
+      <activation>
+        <os>
+          <name>Linux</name>
+          <family>unix</family>
+	  <arch>arm</arch>
+        </os>
+      </activation>
+      <modules>
+        <module>linux-x86_64</module>
+      </modules>
+    </profile>
+    <profile>
       <id>linux</id>
       <activation>
         <os>
@@ -149,7 +162,7 @@
       </activation>
       <modules>
         <module>linux-x86_64</module>
-        <module>windows-x86_64</module>
+        <module>windows-x86_64</module> 
       </modules>
     </profile>
     <profile>
