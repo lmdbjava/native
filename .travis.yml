@@ -8,6 +8,11 @@ matrix:
     dist: xenial
     language: java
     jdk: openjdk11
+    env:
+    - ANDROID_NDK_HOME=$HOME/ndk/android-ndk-r19b
+    cache:
+      directories:
+      - $HOME/ndk
   - os: osx
     language: java
     osx_image: xcode10.1
@@ -23,7 +28,8 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install mingw-w64-x86-64-dev; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install gcc-mingw-w64-x86-64; fi
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install unzip; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip -O ndk.zip && unzip -qq ndk.zip && export ANDROID_NDK_HOME=`pwd`/android-ndk-r19b; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ ! -e $HOME/ndk/ndk.zip ]; then wget https://dl.google.com/android/repository/android-ndk-r19b-linux-x86_64.zip -O $HOME/ndk/ndk.zip; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then unzip -qq -n $HOME/ndk/ndk.zip -d $HOME/ndk; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export JAVA_HOME=$(/usr/libexec/java_home); fi
 install:
   - mvn -B -Pdeploy -DexcludeGroupIds=com.github.github -V dependency:go-offline
