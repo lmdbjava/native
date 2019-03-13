@@ -14,6 +14,8 @@ The following dependencies are required (plus Java and Maven):
 * GCC for building the Linux or OS X shared library
 * [Mingw-w64](http://mingw-w64.org/) for building the Windows DLL (on Linux)
   (Arch Linux uses can `pacman -S mingw-w64-gcc`)
+* [Android NDK](https://developer.android.com/ndk/) (Arch Linux users can
+  `packer -S android-ndk`)
 
 ### Installation
 
