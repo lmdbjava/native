@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.lmdbjava</groupId>
   <artifactId>lmdbjava-native-parent</artifactId>
-  <version>0.9.23-2-SNAPSHOT</version>
+  <version>0.9.24-1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>LmdbJava Native Library Holder</name>
   <description>Holds output of a Symas Lightning Database (LMDB) builds</description>

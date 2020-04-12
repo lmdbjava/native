@@ -4,10 +4,10 @@
   <parent>
     <groupId>org.lmdbjava</groupId>
     <artifactId>lmdbjava-native-parent</artifactId>
-    <version>0.9.23-2-SNAPSHOT</version>
+    <version>0.9.24-1-SNAPSHOT</version>
   </parent>
   <artifactId>lmdbjava-native-linux-android-x86-i686</artifactId>
-  <version>0.9.23-2-SNAPSHOT</version>
+  <version>0.9.24-1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>LmdbJava Native Library Holder: Linux Android i686</name>
   <build>
