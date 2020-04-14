@@ -6,8 +6,12 @@
 
 This repository creates standard builds of the [LMDB](http://symas.com/mdb/)
 native library. It packages the built libraries into operating system-specific
-JARs (with POMs). This allows LmdbJava (or other interested Java projects) to
-depend on these JARs using the normal Maven dependency resolution process.
+JARs (with POMs). This allows [LmdbJava](https://github.com/lmdbjava/lmdbjava)
+(or other interested Java projects) to depend on these JARs using the normal
+Maven dependency resolution process.
+
+**If you are simply wishing to use LMDB from Java, please use the
+[LmdbJava](https://github.com/lmdbjava/lmdbjava) project.**
 
 This project is intended to be executed by GitHub Actions, as Linux, Windows and
 macOS operating systems are all required. Linux is used for compiling the Linux
@@ -22,9 +26,9 @@ The qualifier resets to `1` on a new major, minor or patch release.
 
 ### Repository
 
-LmdbJava shades inside its JAR all of the system libraries produced by this
-project. As such, end users typically have no need to refer to any artifacts
-produced by this project.
+[LmdbJava](https://github.com/lmdbjava/lmdbjava) shades inside its JAR all of
+the system libraries produced by this project. As such, end users typically have
+no need to refer to any artifacts produced by this project.
 
 ### Snapshots
 
