@@ -1,0 +1,93 @@
+name: Maven Build and Deployment
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: ${{ matrix.os }} Build
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Set up Java and Maven
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
+    - name: Cache Maven packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    - name: Install Linux cross-compliation toolchain
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install binutils-mingw-w64-x86-64
+        sudo apt-get install gcc-mingw-w64-base
+        sudo apt-get install mingw-w64-common
+        sudo apt-get install mingw-w64-x86-64-dev
+        sudo apt-get install gcc-mingw-w64-x86-64
+
+    - name: Build with Maven
+      run: mvn -B -Dgpg.skip=true verify
+
+  deploy:
+    needs: build
+    name: ${{ matrix.os }} Deploy to OSSRH
+    runs-on: ${{ matrix.os }}
+    if: github.event_name == 'push'
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Set up Java and Maven
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
+    - name: Cache Maven packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    - name: Install Linux cross-compliation toolchain
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install binutils-mingw-w64-x86-64
+        sudo apt-get install gcc-mingw-w64-base
+        sudo apt-get install mingw-w64-common
+        sudo apt-get install mingw-w64-x86-64-dev
+        sudo apt-get install gcc-mingw-w64-x86-64
+
+    - name: Publish Maven package
+      uses: samuelmeuli/action-maven-publish@v1
+      with:
+        gpg_private_key: ${{ secrets.gpg_private_key }}
+        gpg_passphrase: ${{ secrets.gpg_passphrase }}
+        nexus_username: ${{ secrets.nexus_username }}
+        nexus_password: ${{ secrets.nexus_password }}

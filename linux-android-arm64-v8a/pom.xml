@@ -35,8 +35,8 @@
               <executable>make</executable>
               <commandlineArgs>-e clean all</commandlineArgs>
               <environmentVariables>
-                <CC>${env.ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang</CC>
-                <AR>${env.ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android-ar</AR>
+                <CC>${env.ANDROID_SDK_ROOT}/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang</CC>
+                <AR>${env.ANDROID_SDK_ROOT}/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android-ar</AR>
                 <XCFLAGS>-DMDB_USE_ROBUST=0</XCFLAGS>
               </environmentVariables>
             </configuration>

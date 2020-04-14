@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lmdbjava/native.svg?branch=master)](https://travis-ci.org/lmdbjava/native)
+[![Maven Build and Deployment](https://github.com/lmdbjava/native/workflows/Maven%20Build%20and%20Deployment/badge.svg)](https://github.com/lmdbjava/native/actions)
 [![Maven Central](https://img.shields.io/maven-central/v/org.lmdbjava/lmdbjava-native-parent.svg?maxAge=3600)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.lmdbjava%22%20AND%20a%3A%22lmdbjava-native-parent%22)
 [![License](https://img.shields.io/badge/license-OpenLDAP-blue.svg?maxAge=2592000)](http://www.openldap.org/software/release/license.html)
 
@@ -11,7 +11,7 @@ depend on these JARs using the normal Maven dependency resolution process.
 
 The following dependencies are required (plus Java and Maven):
 
-* GCC for building the Linux or OS X shared library
+* GCC for building the Linux or macOS shared library
 * [Mingw-w64](http://mingw-w64.org/) for building the Windows DLL (on Linux)
   (Arch Linux uses can `pacman -S mingw-w64-gcc`)
 * [Android NDK](https://developer.android.com/ndk/) (Arch Linux users can
@@ -19,10 +19,9 @@ The following dependencies are required (plus Java and Maven):
 
 ### Installation
 
-This project is mainly intended to be built by Travis CI, as a Linux operating
-system is required to build the Linux and Windows libraries, and an OS X
-operating system is needed to build the OS X library. Nevertheless it is
-possible to execute the Linux or OS X component of the build locally.
+This project is mainly intended to be built by GitHub Actions, as Linux and
+macOS operating systems are both required. Linux is used for compiling all
+modules (ie Linux, Windows, Android) except macOS.
 
 Once the platform dependencies are met:
 
@@ -31,7 +30,7 @@ git submodule update --init
 mvn clean install
 ```
 
-An appropriate Maven profile will automatically be used for Linux or OS X.
+An appropriate Maven profile will automatically be used for Linux or macOS.
 
 ### Versioning
 
@@ -48,7 +47,7 @@ produced by this project.
 
 ### Snapshots
 
-Travis CI automatically publishes snapshot releases to the
+GitHub Actions automatically publishes snapshot releases to the
 [OSS Sonatype Snapshots Repository](https://oss.sonatype.org/content/repositories/snapshots/org/lmdbjava/lmdbjava-native-parent/).
 
 ### Support
