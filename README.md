@@ -9,28 +9,9 @@ native library. It packages the built libraries into operating system-specific
 JARs (with POMs). This allows LmdbJava (or other interested Java projects) to
 depend on these JARs using the normal Maven dependency resolution process.
 
-The following dependencies are required (plus Java and Maven):
-
-* GCC for building the Linux or macOS shared library
-* [Mingw-w64](http://mingw-w64.org/) for building the Windows DLL (on Linux)
-  (Arch Linux uses can `pacman -S mingw-w64-gcc`)
-* [Android NDK](https://developer.android.com/ndk/) (Arch Linux users can
-  `packer -S android-ndk`)
-
-### Installation
-
-This project is mainly intended to be built by GitHub Actions, as Linux and
-macOS operating systems are both required. Linux is used for compiling all
-modules (ie Linux, Windows, Android) except macOS.
-
-Once the platform dependencies are met:
-
-```bash
-git submodule update --init
-mvn clean install
-```
-
-An appropriate Maven profile will automatically be used for Linux or macOS.
+This project is intended to be executed by GitHub Actions, as Linux, Windows and
+macOS operating systems are all required. Linux is used for compiling the Linux
+and Android modules, whereas Windows and macOS compile their modules.
 
 ### Versioning
 

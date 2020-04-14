@@ -154,8 +154,30 @@
         <module>linux-android-armeabi-v7a</module>
         <module>linux-android-arm64-v8a</module>
         <module>linux-android-x86-i686</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>Windows</family>
+        </os>
+      </activation>
+      <modules>
         <module>windows-x86_64</module>
       </modules>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <!-- Windows doesn't deploy native-parent (performed by Linux) -->
+            <configuration>
+              <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>osx</id>
@@ -172,7 +194,7 @@
           <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
-            <!-- OSX doesn't deploy native-parent, but it does osx-x86_64 -->
+            <!-- OSX doesn't deploy native-parent (performed by Linux) -->
             <configuration>
               <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
             </configuration>

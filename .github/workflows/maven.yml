@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
     - name: Check out Git repository
@@ -32,16 +32,6 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-
-    - name: Install Linux cross-compliation toolchain
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get update
-        sudo apt-get install binutils-mingw-w64-x86-64
-        sudo apt-get install gcc-mingw-w64-base
-        sudo apt-get install mingw-w64-common
-        sudo apt-get install mingw-w64-x86-64-dev
-        sudo apt-get install gcc-mingw-w64-x86-64
 
     - name: Build with Maven
       run: mvn -B verify
@@ -54,7 +44,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
     - name: Check out Git repository
@@ -73,16 +63,6 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-
-    - name: Install Linux cross-compliation toolchain
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get update
-        sudo apt-get install binutils-mingw-w64-x86-64
-        sudo apt-get install gcc-mingw-w64-base
-        sudo apt-get install mingw-w64-common
-        sudo apt-get install mingw-w64-x86-64-dev
-        sudo apt-get install gcc-mingw-w64-x86-64
 
     - name: Publish Maven package
       uses: samuelmeuli/action-maven-publish@v1

@@ -13,6 +13,14 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <!-- Windows profile (in super POM) disabled deployment, so turn back on here so this submodule is deployed -->
+        <configuration>
+          <skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
       </plugin>
@@ -33,13 +41,7 @@
             <configuration>
               <workingDirectory>${project.basedir}/../lmdb/libraries/liblmdb</workingDirectory>
               <executable>make</executable>
-              <commandlineArgs>-e clean all</commandlineArgs>
-              <environmentVariables>
-                <CC>x86_64-w64-mingw32-gcc</CC>
-                <AR>x86_64-w64-mingw32-gcc-ar</AR>
-                <LDLIBS>-lntdll</LDLIBS>
-                <SOLIBS>-lntdll</SOLIBS>
-              </environmentVariables>
+              <commandlineArgs>-e clean test</commandlineArgs>
             </configuration>
           </execution>
         </executions>
