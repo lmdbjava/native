@@ -13,12 +13,25 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <!-- OSX profile disabled deployment (to skip native-parent deploy) -->
-        <configuration>
-          <skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
-        </configuration>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <phase>process-classes</phase>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <sourceFile>${project.basedir}/../lmdb/libraries/liblmdb/liblmdb.so</sourceFile>
+                  <destinationFile>${project.basedir}/target/native/org/lmdbjava/${project.artifactId}.dylib</destinationFile>
+                </fileSet>
+              </fileSets>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -34,10 +47,10 @@
         <executions>
           <execution>
             <id>native</id>
-            <phase>compile</phase>
             <goals>
               <goal>exec</goal>
             </goals>
+            <phase>compile</phase>
             <configuration>
               <workingDirectory>${project.basedir}/../lmdb/libraries/liblmdb</workingDirectory>
               <executable>make</executable>
@@ -47,25 +60,12 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>com.coderplus.maven.plugins</groupId>
-        <artifactId>copy-rename-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <fileSets>
-                <fileSet>
-                  <sourceFile>${project.basedir}/../lmdb/libraries/liblmdb/liblmdb.so</sourceFile>
-                  <destinationFile>${project.basedir}/target/native/org/lmdbjava/${project.artifactId}.dylib</destinationFile>
-                </fileSet>
-              </fileSets>
-            </configuration>
-          </execution>
-        </executions>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <!-- OSX profile disabled deployment (to skip native-parent deploy) -->
+        <configuration>
+          <skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
+        </configuration>
       </plugin>
     </plugins>
   </build>

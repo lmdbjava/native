@@ -12,6 +12,87 @@
   <packaging>pom</packaging>
   <name>LmdbJava Native Library Holder</name>
   <description>Holds output of a Symas Lightning Database (LMDB) builds</description>
+  <properties>
+    <github.org>lmdbjava</github.org>
+    <github.repo>native</github.repo>
+  </properties>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.coderplus.maven.plugins</groupId>
+          <artifactId>copy-rename-maven-plugin</artifactId>
+          <version>1.0.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <id>mkdir-for-copy</id>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <phase>generate-sources</phase>
+              <configuration>
+                <tasks>
+                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
+                </tasks>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <classesDirectory>${project.basedir}/target/native</classesDirectory>
+            <includes>
+              <include>**/*.so</include>
+              <include>**/*.dylib</include>
+              <include>**/*.dll</include>
+            </includes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>au.com.acegi</groupId>
+        <artifactId>xml-format-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.github.ekryd.sortpom</groupId>
+        <artifactId>sortpom-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.basepom.maven</groupId>
+        <artifactId>duplicate-finder-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
   <inceptionYear>2016</inceptionYear>
   <organization>
     <name>The LmdbJava Open Source Project</name>
@@ -25,16 +106,16 @@
   </licenses>
   <developers>
     <developer>
-      <name>Kristoffer Sjogren</name>
       <id>krisskross</id>
+      <name>Kristoffer Sjogren</name>
       <email>stoffe -at- gmail.com</email>
-      <organization />
       <url>http://stoffe.deephacks.org/</url>
+      <organization />
       <timezone>+1</timezone>
     </developer>
     <developer>
-      <name>Ben Alex</name>
       <id>benalexau</id>
+      <name>Ben Alex</name>
       <email>ben.alex@acegi.com.au</email>
       <url>https://github.com/benalexau/</url>
       <organization>Acegi Technology Pty Limited</organization>
@@ -54,81 +135,6 @@
     <system>GitHub Actions</system>
     <url>https://github.com/${github.org}/${github.repo}/actions</url>
   </ciManagement>
-  <properties>
-    <github.org>lmdbjava</github.org>
-    <github.repo>native</github.repo>
-  </properties>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-enforcer-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.basepom.maven</groupId>
-        <artifactId>duplicate-finder-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>versions-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>au.com.acegi</groupId>
-        <artifactId>xml-format-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>1.6.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.8</version>
-          <executions>
-            <execution>
-              <id>mkdir-for-copy</id>
-              <phase>generate-sources</phase>
-              <configuration>
-                <tasks>
-                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
-                </tasks>
-              </configuration>
-              <goals>
-                <goal>run</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-            <classesDirectory>${project.basedir}/target/native</classesDirectory>
-            <includes>
-              <include>**/*.so</include>
-              <include>**/*.dylib</include>
-              <include>**/*.dll</include>
-            </includes>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>com.coderplus.maven.plugins</groupId>
-          <artifactId>copy-rename-maven-plugin</artifactId>
-          <version>1.0.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
   <profiles>
     <profile>
       <id>release-tag</id>
