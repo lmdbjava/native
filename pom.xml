@@ -37,7 +37,7 @@
               <phase>generate-sources</phase>
               <configuration>
                 <tasks>
-                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
+                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava"/>
                 </tasks>
               </configuration>
             </execution>
@@ -110,7 +110,7 @@
       <name>Kristoffer Sjogren</name>
       <email>stoffe -at- gmail.com</email>
       <url>http://stoffe.deephacks.org/</url>
-      <organization />
+      <organization/>
       <timezone>+1</timezone>
     </developer>
     <developer>
@@ -148,18 +148,56 @@
       </modules>
     </profile>
     <profile>
-      <id>linux</id>
+      <id>linux-android</id>
       <activation>
-        <os>
-          <name>Linux</name>
-          <family>unix</family>
-        </os>
+        <file>
+          <exists>${env.ANDROID_SDK_ROOT}/ndk-bundle/toolchains/llvm</exists>
+        </file>
       </activation>
       <modules>
         <module>linux-x86_64</module>
         <module>linux-android-armeabi-v7a</module>
         <module>linux-android-arm64-v8a</module>
         <module>linux-android-x86-i686</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>linux-x86_64</id>
+      <activation>
+        <os>
+          <name>Linux</name>
+          <family>unix</family>
+          <arch>amd64</arch>
+        </os>
+      </activation>
+      <modules>
+        <module>linux-x86_64</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>linux-aarch64</id>
+      <activation>
+        <os>
+          <name>Linux</name>
+          <family>unix</family>
+          <arch>aarch64</arch>
+        </os>
+      </activation>
+      <modules>
+        <module>linux-aarch64</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>linux-ppc64le</id>
+      <activation>
+        <os>
+          <name>Linux</name>
+          <family>unix</family>
+          <arch>ppc64le</arch>
+        </os>
+      </activation>
+      <modules>
+        <module>linux-ppc64le</module>
       </modules>
     </profile>
     <profile>
