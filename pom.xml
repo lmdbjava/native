@@ -37,7 +37,7 @@
               <phase>generate-sources</phase>
               <configuration>
                 <tasks>
-                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava" />
+                  <mkdir dir="${project.basedir}/target/native/org/lmdbjava"/>
                 </tasks>
               </configuration>
             </execution>
@@ -110,7 +110,7 @@
       <name>Kristoffer Sjogren</name>
       <email>stoffe -at- gmail.com</email>
       <url>http://stoffe.deephacks.org/</url>
-      <organization />
+      <organization/>
       <timezone>+1</timezone>
     </developer>
     <developer>
