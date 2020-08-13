@@ -163,6 +163,12 @@
       </modules>
     </profile>
     <profile>
+      <id>linux-x86_64</id>
+      <modules>
+        <module>linux-x86_64</module>
+      </modules>
+    </profile>
+    <profile>
       <id>windows</id>
       <activation>
         <os>
