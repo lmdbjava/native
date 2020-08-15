@@ -175,6 +175,12 @@
       </modules>
     </profile>
     <profile>
+      <id>linux-ppc64le</id>
+      <modules>
+        <module>linux-ppc64le</module>
+      </modules>
+    </profile>
+    <profile>
       <id>windows</id>
       <activation>
         <os>
