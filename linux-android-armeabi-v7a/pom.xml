@@ -4,10 +4,10 @@
   <parent>
     <groupId>org.lmdbjava</groupId>
     <artifactId>lmdbjava-native-parent</artifactId>
-    <version>0.9.24-2-SNAPSHOT</version>
+    <version>0.9.29-1-SNAPSHOT</version>
   </parent>
   <artifactId>lmdbjava-native-linux-android-armeabi-v7a</artifactId>
-  <version>0.9.24-2-SNAPSHOT</version>
+  <version>0.9.29-1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>LmdbJava Native Library Holder: Linux Android armv7</name>
   <build>
