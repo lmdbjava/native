@@ -140,9 +140,6 @@
       <id>release-tag</id>
       <modules>
         <module>linux-x86_64</module>
-        <module>linux-android-armeabi-v7a</module>
-        <module>linux-android-arm64-v8a</module>
-        <module>linux-android-x86-i686</module>
         <module>windows-x86_64</module>
         <module>osx-x86_64</module>
       </modules>
@@ -157,9 +154,6 @@
       </activation>
       <modules>
         <module>linux-x86_64</module>
-        <module>linux-android-armeabi-v7a</module>
-        <module>linux-android-arm64-v8a</module>
-        <module>linux-android-x86-i686</module>
       </modules>
     </profile>
     <profile>

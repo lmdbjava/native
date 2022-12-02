@@ -15,7 +15,7 @@ Maven dependency resolution process.
 
 This project is intended to be executed by GitHub Actions, as Linux, Windows and
 macOS operating systems are all required. Linux is used for compiling the Linux
-and Android modules, whereas Windows and macOS compile their modules.
+modules, whereas Windows and macOS compile their modules.
 
 ### Versioning
 
