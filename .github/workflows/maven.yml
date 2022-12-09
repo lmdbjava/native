@@ -17,21 +17,16 @@ jobs:
 
     steps:
     - name: Check out Git repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: true
 
     - name: Set up Java and Maven
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
+        distribution: zulu
         java-version: 11
-
-    - name: Cache Maven packages
-      uses: actions/cache@v1
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
+        cache: maven
 
     - name: Build with Maven
       run: mvn -B verify
@@ -48,27 +43,25 @@ jobs:
 
     steps:
     - name: Check out Git repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: true
 
     - name: Set up Java and Maven
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
+        distribution: zulu
         java-version: 11
-
-    - name: Cache Maven packages
-      uses: actions/cache@v1
-      with:
-        path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2
+        cache: maven
+        server-id: ossrh
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_CENTRAL_TOKEN
+        gpg-private-key: ${{ secrets.gpg_private_key }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Publish Maven package
-      uses: samuelmeuli/action-maven-publish@v1
-      with:
-        gpg_private_key: ${{ secrets.gpg_private_key }}
-        gpg_passphrase: ${{ secrets.gpg_passphrase }}
-        nexus_username: ${{ secrets.nexus_username }}
-        nexus_password: ${{ secrets.nexus_password }}
-        maven_profiles: ossrh-deploy
+      run: mvn -Possrh-deploy -B deploy
+      env:
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
+        MAVEN_USERNAME: ${{ secrets.nexus_username }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.nexus_password }}
