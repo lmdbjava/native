@@ -140,16 +140,32 @@
       <id>release-tag</id>
       <modules>
         <module>linux-x86_64</module>
+        <module>linux-aarch64</module>
         <module>windows-x86_64</module>
         <module>osx-x86_64</module>
+        <module>osx-arm64</module>
       </modules>
     </profile>
     <profile>
-      <id>linux</id>
+      <id>linux-x86_64</id>
       <activation>
         <os>
           <name>Linux</name>
           <family>unix</family>
+          <arch>x86_64</arch>
+        </os>
+      </activation>
+      <modules>
+        <module>linux-x86_64</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>linux-aarch64</id>
+      <activation>
+        <os>
+          <name>Linux</name>
+          <family>unix</family>
+          <arch>aarch64</arch>
         </os>
       </activation>
       <modules>
@@ -180,14 +196,39 @@
       </build>
     </profile>
     <profile>
-      <id>osx</id>
+      <id>osx-x86-64</id>
       <activation>
         <os>
           <family>mac</family>
+          <arch>x86_64</arch>
         </os>
       </activation>
       <modules>
         <module>osx-x86_64</module>
+      </modules>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <!-- OSX doesn't deploy native-parent (performed by Linux) -->
+            <configuration>
+              <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>osx-arm64</id>
+      <activation>
+        <os>
+          <family>mac</family>
+          <arch>arm64</arch>
+        </os>
+      </activation>
+      <modules>
+        <module>osx-arm64</module>
       </modules>
       <build>
         <plugins>

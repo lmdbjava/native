@@ -9,7 +9,7 @@
   <artifactId>lmdbjava-native-linux-x86_64</artifactId>
   <version>0.9.29-2-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>LmdbJava Native Library Holder: Linux</name>
+  <name>LmdbJava Native Library Holder: Linux (x86_64)</name>
   <build>
     <plugins>
       <plugin>
@@ -54,7 +54,7 @@
             <configuration>
               <workingDirectory>${project.basedir}/../lmdb/libraries/liblmdb</workingDirectory>
               <executable>make</executable>
-              <commandlineArgs>-e clean test</commandlineArgs>
+              <commandlineArgs>-e clean test LDFLAGS="-arch x86_64" CFLAGS="-arch x86_64"</commandlineArgs>
             </configuration>
           </execution>
         </executions>

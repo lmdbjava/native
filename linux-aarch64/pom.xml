@@ -6,10 +6,10 @@
     <artifactId>lmdbjava-native-parent</artifactId>
     <version>0.9.29-2-SNAPSHOT</version>
   </parent>
-  <artifactId>lmdbjava-native-osx-x86_64</artifactId>
+  <artifactId>lmdbjava-native-linux-aarch64</artifactId>
   <version>0.9.29-2-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>LmdbJava Native Library Holder: OS X (x86_64)</name>
+  <name>LmdbJava Native Library Holder: Linux (aarch64)</name>
   <build>
     <plugins>
       <plugin>
@@ -26,7 +26,7 @@
               <fileSets>
                 <fileSet>
                   <sourceFile>${project.basedir}/../lmdb/libraries/liblmdb/liblmdb.so</sourceFile>
-                  <destinationFile>${project.basedir}/target/native/org/lmdbjava/${project.artifactId}.dylib</destinationFile>
+                  <destinationFile>${project.basedir}/target/native/org/lmdbjava/${project.artifactId}.so</destinationFile>
                 </fileSet>
               </fileSets>
             </configuration>
@@ -54,18 +54,10 @@
             <configuration>
               <workingDirectory>${project.basedir}/../lmdb/libraries/liblmdb</workingDirectory>
               <executable>make</executable>
-              <commandlineArgs>-e clean test LDFLAGS="-arch x86_64" CFLAGS="-arch x86_64"</commandlineArgs>
+              <commandlineArgs>-e clean test LDFLAGS="-arch aarch64" CFLAGS="-arch aarch64"</commandlineArgs>
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <!-- OSX profile disabled deployment (to skip native-parent deploy) -->
-        <configuration>
-          <skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
-        </configuration>
       </plugin>
     </plugins>
   </build>

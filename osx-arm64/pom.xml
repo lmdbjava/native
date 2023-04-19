@@ -6,10 +6,10 @@
     <artifactId>lmdbjava-native-parent</artifactId>
     <version>0.9.29-2-SNAPSHOT</version>
   </parent>
-  <artifactId>lmdbjava-native-osx-x86_64</artifactId>
+  <artifactId>lmdbjava-native-osx-arm64</artifactId>
   <version>0.9.29-2-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>LmdbJava Native Library Holder: OS X (x86_64)</name>
+  <name>LmdbJava Native Library Holder: OS X (arm64)</name>
   <build>
     <plugins>
       <plugin>
@@ -54,7 +54,7 @@
             <configuration>
               <workingDirectory>${project.basedir}/../lmdb/libraries/liblmdb</workingDirectory>
               <executable>make</executable>
-              <commandlineArgs>-e clean test LDFLAGS="-arch x86_64" CFLAGS="-arch x86_64"</commandlineArgs>
+              <commandlineArgs>-e clean test LDFLAGS="-arch arm64" CFLAGS="-arch arm64"</commandlineArgs>
             </configuration>
           </execution>
         </executions>
