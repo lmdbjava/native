@@ -142,6 +142,13 @@
       <url>http://www.openldap.org/software/release/license.html</url>
     </license>
   </licenses>
+  <developers>
+    <developer>
+      <id>lmdbjava</id>
+      <name>The LmdbJava Open Source Project</name>
+      <url>https://github.com/lmdbjava</url>
+    </developer>
+  </developers>
   <scm>
     <connection>scm:git:git@github.com:lmdbjava/native.git</connection>
     <developerConnection>scm:git:git@github.com:lmdbjava/native.git</developerConnection>
