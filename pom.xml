@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lmdbjava</groupId>
   <artifactId>native</artifactId>
-  <version>0.9.19-1</version>
+  <version>0.9.20-1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>LmdbJava Native Libraries</name>
   <description>Native LMDB libraries for all supported platforms</description>
@@ -165,7 +165,7 @@
     <connection>scm:git:git@github.com:lmdbjava/native.git</connection>
     <developerConnection>scm:git:git@github.com:lmdbjava/native.git</developerConnection>
     <url>https://github.com/lmdbjava/native</url>
-    <tag>native-0.9.19-1</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issues</system>
