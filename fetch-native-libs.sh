@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-LMDB_VERSION="0.9.18-3"
+LMDB_VERSION="0.9.19-1"
 DEST="${DEST:-src/main/resources/org/lmdbjava/native}"
 TMP=$(mktemp -d)
 trap "rm -rf $TMP" EXIT
