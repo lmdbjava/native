@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y zstd
+      run: sudo apt-get update && sudo apt-get install -y zstd rpm2cpio cpio
 
     - name: Set up Java and Maven
       uses: actions/setup-java@v5
@@ -39,7 +39,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y zstd
+      run: sudo apt-get update && sudo apt-get install -y zstd rpm2cpio cpio
 
     - name: Set up Java and Maven
       uses: actions/setup-java@v5

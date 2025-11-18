@@ -4,7 +4,7 @@
 
 # LMDB Native Libraries
 
-Provides pre-compiled LMDB native libraries for Linux, macOS and Windows. These libraries are fetched from distribution package managers (Arch Linux, Homebrew, MSYS2) and packaged into a single JAR for easy dependency resolution.
+Provides pre-compiled LMDB native libraries for Linux, macOS and Windows. These libraries are fetched from distribution package managers (Alpine Linux, Fedora, Homebrew, MSYS2) and packaged into a single JAR for easy dependency resolution.
 
 **If you are using LMDB from Java, use the [LmdbJava](https://github.com/lmdbjava/lmdbjava) project instead.** This artifact is a dependency of LmdbJava.
 
