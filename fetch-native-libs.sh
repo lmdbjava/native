@@ -47,14 +47,14 @@ fi
 
 # Fedora x86_64 (glibc)
 if [ ! -f "$DEST/x86_64-linux-gnu.so" ]; then
-  curl -sL "https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/os/Packages/l/lmdb-libs-${LMDB_VERSION}-2.fc41.x86_64.rpm" -o "$TMP/x64-glibc.rpm"
+  curl -sL "https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Everything/x86_64/os/Packages/l/lmdb-libs-${LMDB_VERSION}-3.fc42.x86_64.rpm" -o "$TMP/x64-glibc.rpm"
   (cd "$TMP" && rpm2cpio x64-glibc.rpm | cpio -idm) >/dev/null 2>&1
   mv -f "$TMP/usr/lib64/liblmdb.so.0.0.0" "$DEST/x86_64-linux-gnu.so"
 fi
 
 # Fedora aarch64 (glibc)
 if [ ! -f "$DEST/aarch64-linux-gnu.so" ]; then
-  curl -sL "https://dl.fedoraproject.org/pub/fedora/linux/releases/41/Everything/aarch64/os/Packages/l/lmdb-libs-${LMDB_VERSION}-2.fc41.aarch64.rpm" -o "$TMP/arm64-glibc.rpm"
+  curl -sL "https://dl.fedoraproject.org/pub/fedora/linux/releases/42/Everything/aarch64/os/Packages/l/lmdb-libs-${LMDB_VERSION}-3.fc42.aarch64.rpm" -o "$TMP/arm64-glibc.rpm"
   (cd "$TMP" && rpm2cpio arm64-glibc.rpm | cpio -idm) >/dev/null 2>&1
   mv -f "$TMP/usr/lib64/liblmdb.so.0.0.0" "$DEST/aarch64-linux-gnu.so"
 fi
