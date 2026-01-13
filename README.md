@@ -18,6 +18,12 @@ cd ..
 git add lmdb
 ```
 
+### Releasing
+
+```bash
+mvn release:clean release:prepare
+```
+
 ### License
 
 LMDB (and this repository for simplicity) is licensed under [The OpenLDAP Public License](http://www.openldap.org/software/release/license.html).
