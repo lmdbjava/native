@@ -1,0 +1,146 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+    tags: ['native-*']
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+env:
+  LMDB: lmdb/libraries/liblmdb
+
+jobs:
+  linux:
+    strategy:
+      fail-fast: true
+      matrix:
+        # Container versions: debian:bookworm = glibc 2.36, alpine:3.21 = musl
+        include:
+          - { runner: ubuntu-latest, container: "debian:bookworm", artifact: x86_64-linux-gnu.so }
+          - { runner: ubuntu-24.04-arm, container: "debian:bookworm", artifact: aarch64-linux-gnu.so }
+          - { runner: ubuntu-latest, container: "alpine:3.21", artifact: x86_64-linux-musl.so }
+    runs-on: ${{ matrix.runner }}
+    container: ${{ matrix.container }}
+    steps:
+      - name: Install tools
+        run: |
+          if command -v apt-get >/dev/null; then
+            apt-get update && apt-get install -y build-essential git
+          else
+            apk add --no-cache build-base git
+          fi
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Build and test
+        run: make test
+        working-directory: ${{ env.LMDB }}
+      - name: Prepare artifact
+        run: cp ${{ env.LMDB }}/liblmdb.so ${{ matrix.artifact }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}
+          retention-days: 1
+
+  # ARM64 Alpine (alpine:3.21) requires QEMU because GitHub's JS actions don't run in Alpine on ARM64.
+  # Tests are skipped because LMDB's MDB_FIXEDMAP doesn't work under QEMU emulation.
+  linux-arm64-musl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: docker/setup-qemu-action@v3
+      - name: Build
+        run: |
+          docker run --rm -v $PWD:/work -w /work --platform linux/arm64 alpine:3.21 sh -c '
+            apk add --no-cache build-base
+            make -C ${{ env.LMDB }}
+          '
+      - name: Prepare artifact
+        run: cp ${{ env.LMDB }}/liblmdb.so aarch64-linux-musl.so
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aarch64-linux-musl.so
+          path: aarch64-linux-musl.so
+          retention-days: 1
+
+  macos:
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - { runner: macos-15-intel, artifact: x86_64-macos-none.so }   # Intel available until Aug 2027
+          - { runner: macos-latest, artifact: aarch64-macos-none.so }
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Build and test
+        run: make test
+        working-directory: ${{ env.LMDB }}
+      - name: Prepare artifact
+        run: cp ${{ env.LMDB }}/liblmdb.so ${{ matrix.artifact }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.artifact }}
+          retention-days: 1
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          install: mingw-w64-x86_64-gcc make
+      - name: Build and test
+        shell: msys2 {0}
+        run: make SOEXT=.dll test
+        working-directory: ${{ env.LMDB }}
+      - name: Prepare artifact
+        run: cp ${{ env.LMDB }}/liblmdb.dll x86_64-windows-gnu.dll
+      - uses: actions/upload-artifact@v4
+        with:
+          name: x86_64-windows-gnu.dll
+          path: x86_64-windows-gnu.dll
+          retention-days: 1
+
+  package:
+    needs: [linux, linux-arm64-musl, macos, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: target/classes/org/lmdbjava/native
+          merge-multiple: true
+      - run: ls -la target/classes/org/lmdbjava/native
+      - uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 21
+          server-id: central
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_PASSWORD
+          gpg-private-key: ${{ secrets.gpg_private_key }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+      - run: mvn -B package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native.jar
+          path: target/*.jar
+      - name: Deploy
+        if: startsWith(github.ref, 'refs/tags/')
+        run: mvn -B -Pcentral-deploy deploy -DskipTests
+        env:
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.central_username }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.central_password }}

@@ -10,7 +10,6 @@
   <properties>
     <buildnumber-maven-plugin.version>3.2.1</buildnumber-maven-plugin.version>
     <central-publishing-maven-plugin.version>0.9.0</central-publishing-maven-plugin.version>
-    <exec-maven-plugin.version>3.6.2</exec-maven-plugin.version>
     <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
     <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
     <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
@@ -106,27 +105,6 @@
               <goal>create</goal>
             </goals>
             <phase>initialize</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>${exec-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>fetch-native-libraries</id>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <phase>generate-resources</phase>
-            <configuration>
-              <executable>${project.basedir}/fetch-native-libs.sh</executable>
-              <workingDirectory>${project.basedir}</workingDirectory>
-              <environmentVariables>
-                <DEST>target/classes/org/lmdbjava/native</DEST>
-              </environmentVariables>
-            </configuration>
           </execution>
         </executions>
       </plugin>
